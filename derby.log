@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Dec 25 13:50:38 MSK 2020:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-0176-9985-9bde-00001849fde0 
+on database directory memory:C:\Users\krasm\Documents\NetBeansProjects\kach\demo with class loader java.net.URLClassLoader@1efa506d 
+Loaded from file:/C:/Users/krasm/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_271-b09
+user.dir=C:\Users\krasm\Documents\NetBeansProjects\kach
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

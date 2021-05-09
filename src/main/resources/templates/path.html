@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}" />
+        <title th:text="#{map.map}">Map A*</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="js/path.js"></script>
+    </head>
+    <body ng-app="path" ng-controller="PathController">
+        <div th:replace="fragments/header :: header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Здесь будет заголовок</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Здесь будет ссылка</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 th:text="#{path.path}">aa</h1>
+        <div ng-controller="getPath" ng-show="pathList.length > 0">
+            <table id="schoolsTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th th:text="#{path.x1}">x1</th>
+                        <th th:text="#{path.y1}">y1</th>
+                        <th th:text="#{path.x2}">x2</th>
+                        <th th:text="#{path.y2}">y2</th>
+                        <th th:text="#{path.path}">path</th>
+                        <th th:text="#{map.delete}">Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="path in pathList" id="{{path.id}}">
+                        <td>{{path.x1}}</td>
+                        <td>{{path.y1}}</td>
+                        <td>{{path.x2}}</td>
+                        <td>{{path.y2}}</td>
+                        <td>{{path.path}}</td>
+                        <td><div><input type="button" name="pathdelete{{path.x1}}+{{path.y1}}+{{path.x2}}+{{path.y2}}" value="Удалить" ng-click="deletePath(path.id)"/></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form role="form" ng-submit="addPath()">
+            <div>
+                <label th:text="#{path.x1}">x1</label>
+                <div>
+                    <input type="text" name="pathx1" ng-model="x1" />
+                </div>
+            </div>
+            <div>
+                <label th:text="#{path.y1}">y1</label>
+                <div>
+                    <input type="text" name="pathy1" ng-model="y1" />
+                </div>
+            </div>
+            <div>
+                <label th:text="#{path.x2}">x2</label>
+                <div>
+                    <input type="text" name="pathx2" ng-model="x2" />
+                </div>
+            </div>
+            <div>
+                <label th:text="#{path.y2}">y2</label>
+                <div>
+                    <input type="text" name="pathy2" ng-model="y2" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" name="pathsend"/>
+                </div>
+            </div>
+        </form>
+        <div ng-controller="getPath" ng-show="pathList.length > 0">
+            <p th:text="#{path.acsess}">удалить всё</p>
+        </div>
+        <div ng-controller="getPath" ng-show="!(pathList.length > 0)">
+            <a href="/map">Карта</a>
+        </div>
+    </body>
+</html>
