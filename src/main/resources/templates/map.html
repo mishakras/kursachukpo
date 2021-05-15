@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <link href="../static/css/core.css" rel="stylesheet" media="screen" th:href="@{/css/core.css}" />
+        <link href="../static/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/css/bootstrap.min.css}" />
+        <title th:text="#{map.map}">Карта</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script src="js/map.js"></script>
+    </head>
+    <body ng-app="map" ng-controller="MapController">
+        <div th:replace="fragments/header :: header">
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Здесь будет заголовок</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Здесь будет ссылка</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1 th:text="#{map.map}">aa</h1>
+        <div ng-controller="getMap" ng-show="mapList.length > 0">
+            <table id="schoolsTable">
+                <thead>
+                    <tr>
+                        <th >id</th>
+                        <th th:text="#{map.x}">x</th>
+                        <th th:text="#{map.y}">y</th>
+                        <th th:text="#{map.delete}">Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="map in mapList" id="{{map.id}}">
+                        <td>{{map.id}}</td>
+                        <td>{{map.x}}</td>
+                        <td>{{map.y}}</td>
+                        <td><div><input type="button" name="mapdelete{{map.x}}+{{map.y}}" value="Удалить" ng-click="deleteMap(map.id)"/></div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form role="form" ng-submit="addMap()">
+            <div>
+                <label th:text="#{map.x}">x</label>
+                <div>
+                    <input type="text" name="mapx" ng-model="x" />
+                </div>
+            </div>
+            <div>
+                <label th:text="#{map.y}">y</label>
+                <div>
+                    <input type="text" name="mapy" ng-model="y" />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <input type="submit" name="send"/>
+                </div>
+            </div>
+        </form>
+        <div ng-controller="getMap" ng-show="mapList.length > 0">
+            <input type="button" name="mapdeleteall" value="Удалить" ng-click="deleteallMap()"/>
+        </div>
+        <a name="toPath" href="/path">Пути по карте</a>
+    </body>
+</html>
