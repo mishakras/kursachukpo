@@ -40,7 +40,9 @@ public class Pathnew {
         return id;
     }
     public Pathnew(int x1,int y1,int x2,int y2, ArrayList<Map> map){
-        this.path=Calculate.calculate_better(x1, y1, x2, y2, map);
+        String error="";
+        this.path=Calculate.calculate_better(x1, y1, x2, y2, map,error);
+        this.error=error;
     }
     @Column(name="PATHNEW_PATH")
     private ArrayList<Map> path;
@@ -49,5 +51,13 @@ public class Pathnew {
     }
     public void setpath(ArrayList<Map> path){
         this.path=path;
+    }
+    @Column(name="PATHNEW_ERROR")
+    private String error;
+    public String geterror(){
+        return this.error;
+    }
+    public void setpath(String error){
+        this.error=error;
     }
 }
